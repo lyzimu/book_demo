@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.BookDao">
+
+	<select id="findBookAll" resultType="Book">
+	select * from book
+	</select>
+
+	<select id="findBook" parameterType="Book" resultType="Book">
+		select * from book
+		<where>
+			<if test="bname !=null and bname !=''">
+				and bname like '%${bname}%'
+			</if>
+			<if test="author !=null and author !=''">
+				and author like '%${author}%'
+			</if>
+			<if test="publish !=null and publish !=''">
+				and publish like '%${publish}%'
+			</if>
+		</where>
+	</select>
+
+
+	<insert id="addBook" parameterType="Book">
+		insert into book(bname,author,publish,price) values(#{bname},#{author},#{publish},#{price});
+	</insert>
+
+	<delete id="doBookDelete" parameterType="Book">
+		delete  from book where id =#{id}
+	</delete>
+
+	<select id="findBookById" parameterType="Book" resultType="Book">
+		select *  from book where id =#{id}
+	</select>
+
+	<update id="doEditBook" parameterType="Book">
+		update book set bname=#{bname},author=#{author},publish=#{publish},price=#{price} where id =#{id}
+	</update>
+
+</mapper>

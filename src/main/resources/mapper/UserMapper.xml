@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.UserDao">
+	<select id="doLogin" parameterType="User" resultType="User">
+	select * from user where uname=#{uname} and upwd=#{upwd}
+	</select>
+
+	<insert id="doRegister" parameterType="User">
+		insert into user(uname,upwd,gender,email) values(#{uname},#{upwd},#{gender},#{email});
+	</insert>
+
+	<select id="findByUserName" parameterType="String" resultType="User">
+		select * from user where uname = #{uname};
+	</select>
+</mapper>

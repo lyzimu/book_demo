@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>登录页面</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <script th:src="@{/js/jquery.js}"></script>
+    <script th:src="@{/js/bootstrap.js}"></script>
+</head>
+<style>
+    #biankuang{
+        width: 470px;
+        height: 420px;
+        border: 1px solid #fff;
+        background-color: #F7E1B5;
+    }
+    #denglu,#zhuce{
+        width: 300px; height: 46px; color: #000; border-radius: 20px;text-align: center;
+    }
+    #name,#pwd,#ma{
+        width: 200px;
+        height: auto;
+    }
+</style>
+<script>
+    function validate() {
+        if(login.username.value===""){
+            alert("账号不能为空");
+            return;
+        }
+        if(login.password.value===""){
+            alert("密码不能为空");
+            return;
+        }
+        // if(login.check_code.value===""){
+        //     alert("请输入正确的验证码");
+        //     return;
+        // }
+        login.submit();
+    }
+
+</script>
+<body>
+<div class="container-fluid">
+    <h1 style="text-align: center">图书管理系统</h1>
+    <div class="row" >
+        <div style="margin-top: 70px;"></div>
+        <div class="col-md-6 col-xs-offset-4">
+            <div id="biankuang">
+                <h3 style="margin: 25px;text-align: center">登录</h3>
+                <span th:text="${msg}" style="color: red; text-align: center"></span>
+                <form class="form-horizontal"name="login" role="form" th:action="@{/Login}" method="post">
+                    <div class="form-group">
+                        <label  class="col-sm-4 control-label">用户名</label>
+                        <div class="col-sm-8">
+                            <input id="name" type="text" class="form-control" name="uname" placeholder="请输入用户名" required autofocus>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label  class="col-sm-4 control-label">密 &nbsp; 码</label>
+                        <div class="col-sm-8">
+                            <input id="pwd" type="password" class="form-control" name="upwd" placeholder="密码" required>
+                        </div>
+                    </div>
+                    <!--<div class="form-group">-->
+                        <!--<label  class="col-sm-4 control-label">验证码</label>-->
+                        <!--<div class="col-sm-5">-->
+                            <!--<input id="ma" type="text" name="check_code" class="form-control" placeholder="请输入验证码" required>-->
+                        <!--</div>-->
+                        <!--<div class="col-sm-3">-->
+                            <!--<img  src = "CheckServlet" style="margin: 10px" ><br>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                    <div class="form-group">
+                        <label  class="col-sm-3 control-label"></label>
+                        <div class="col-sm-9">
+                            <input type="checkbox" name="keep"> &nbsp;&nbsp;两周内免登陆<br>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div style="margin-left: 100px;">
+                            <input id="denglu" type="submit" value="用户登录" onclick="validate()">
+                        </div>
+                    </div>
+                </form>
+
+                <form th:action="@{/toRegister}" method="post">
+                    <div style="margin-left: 85px;">
+                        <input id="zhuce" type="submit" value="用户注册">
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
